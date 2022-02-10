@@ -1,20 +1,21 @@
 function allClear() {
     document.getElementById("answer").innerHTML = "0";
     console.log("Cleared");
-    numOne = 3;
-    numTwo = 2;
+    numOne = [];
+    numTwo = [];
     selectionValidator = false;
+    calculatedValidator = false;
 }
 
-let numOne = 2;
-let numTwo = 3;
+let numOne = [];
+let numTwo = [];
 let selectionValidator = false;
 let option;
 let operator;
 let choice;
-
-
-
+let variableSwitch = false;
+let calculatedValidator = false;
+let operatorSign;
 function addition() {
     if (selectionValidator == true) {
         console.log("Error, please complete current operation first.");
@@ -23,7 +24,7 @@ function addition() {
         selectionValidator = true;
     }
     choice = "addition";
-
+    variableSwitch = true;
     console.log("addition chosen");
 
 
@@ -41,7 +42,7 @@ function subtraction() {
         selectionValidator = true;
     }
     choice = "subtraction";
-
+    variableSwitch = true;
     console.log("subtraction chosen");
 
 
@@ -59,6 +60,7 @@ function multiplication() {
         selectionValidator = true;
     }
     choice = "multiplication";
+    variableSwitch = true;
     console.log("multiplication chosen");
 
 
@@ -75,7 +77,7 @@ function division() {
         selectionValidator = true;
     }
     choice = "division";
-
+    variableSwitch = true;
     console.log("division chosen");
 
 
@@ -93,34 +95,51 @@ function calculateTotal(choice) {
 
 
         case "addition":
-            operation = "addition";
-
-            result = numOne + numTwo;
+            if (calculatedValidator == false){
+            result = parseInt(numOne) + parseInt(numTwo);
             console.log(result);
             document.getElementById("answer").innerHTML = result;
+            numOne=[];
+            numTwo=[];
+            selectionValidator = false;
+            calculatedValidator = true;}
+            else if (calculatedValidator == true){
+                selectionValidator = false;
+                result = parseInt(numOne) + parseInt(result);
+                console.log(result);
+                document.getElementById("answer").innerHTML = result;
+            }
             break;
-
-
         case "subtraction":
-
+            
             result = numOne - numTwo;
             console.log(result);
             document.getElementById("answer").innerHTML = result;
+            numOne=[];
+            numTwo=[];
+            selectionValidator = false;
+            calculatedValidator = true;
             break;
 
 
         case "multiplication":
-
             result = numOne * numTwo;
             console.log(result);
             document.getElementById("answer").innerHTML = result;
+            numOne=[];
+            numTwo=[];
+            selectionValidator = false;
+            calculatedValidator = true;
             break;
 
         case "division":
-
             result = numOne / numTwo;
             console.log(result);
             document.getElementById("answer").innerHTML = result;
+            numOne=[];
+            numTwo=[];
+            selectionValidator = false;
+            calculatedValidator = true;
             break;
 
 
@@ -132,6 +151,29 @@ function calculateTotal(choice) {
 
 
 
+function getNum(clicked){
 
+    if (selectionValidator == false){
+        console.log("numOne selection: " +clicked);
+        numOne = numOne.concat(+clicked);
+
+        numOne = numOne.toString();
+        document.getElementById("answer").innerHTML = numOne;
+        console.log(numOne);
+        
+
+    }else if (selectionValidator == true){
+        console.log("numTwo selection: " +clicked);
+        numTwo = numTwo.concat(+clicked);
+        numTwo = numTwo.toString();
+        console.log(numTwo);
+    }
+
+    
+
+
+
+   
+}
 
 
