@@ -166,6 +166,7 @@ function getNum(clicked){
         console.log("numTwo selection: " +clicked);
         numTwo = numTwo.concat(+clicked);
         numTwo = numTwo.toString();
+        document.getElementById("answer").innerHTML = numTwo;
         console.log(numTwo);
     }
 
